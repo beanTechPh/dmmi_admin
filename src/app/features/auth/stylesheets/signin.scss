@@ -1,0 +1,117 @@
+#signin-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .signin-box {
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .form-container {
+      padding: 30px;
+      padding-top: 130px;
+
+      h1 {
+        text-align: left;
+      }
+
+      form {
+        margin-top: 50px;
+
+        .form-group {
+          margin-bottom: 15px;
+        }
+      }
+
+      button {
+        width: 80%;
+        margin-top: 20px;
+      }
+
+      .redirect-to {
+        margin-top: 25px;
+
+        font-size: 13px;
+        font-weight: 500;
+
+        a {
+          text-decoration: none;
+          margin-left: 5px;
+          margin-right: 2px;
+        }
+      }
+    }
+  }
+
+  .customd-card {
+    width: 500px;
+    height: fit-content;
+    min-height: auto;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    .title {
+      margin-bottom: 30px;
+    }
+
+    .form {
+      .group {
+        width: 90%;
+        margin: auto;
+        margin-bottom: 20px;
+  
+        .label {
+          font-size: 13px;
+          margin: auto 0;
+
+          text-align: left;
+          font-weight: bold;
+        }
+  
+        input {
+          height: 30px;
+          border-radius: 0;
+          border: none;
+          border-bottom: 1px solid rgba(0,0,0,0.2);
+  
+          &:focus-visible {
+            outline: none;
+            border-color: skyblue !important;
+            color: skyblue !important;
+  
+            &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+              color: skyblue !important;
+              opacity: 1; /* Firefox */
+            }
+            
+            &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+              color: skyblue !important;
+            }
+            
+            &::-ms-input-placeholder { /* Microsoft Edge */
+              color: skyblue !important;
+            }
+          }
+        }
+      }
+    }
+
+    .sign-up-details {
+      margin-top: 30px;
+
+      span {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
