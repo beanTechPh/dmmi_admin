@@ -1,0 +1,114 @@
+.data-table {
+  thead {
+    tr {
+      th {
+        font-size: 15px;
+        padding: 6px;
+
+        &:first-child {
+          border-radius: 10px 0 0 0;
+        }
+
+        &:last-child {
+          border-radius: 0 10px 0 0;
+        }
+
+        &.date {
+          width: 120px;
+        }
+
+        &.id-no {
+          text-align: left;
+        }
+
+        &.status {
+          width: 120px;
+        }
+
+        &.price {
+          width: 200px;
+        }
+
+        &.origin {
+          width: 100px;
+        }
+
+        &.serial-no {
+          width: 150px;
+        }
+
+        &.type {
+          width: 300px;
+          text-align: left;
+        }
+
+        &.name {
+          text-align: left;
+        }
+
+        &.branch {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      cursor: pointer;
+      
+      &:hover {
+        background-color: #daf8ff;
+      }
+
+      td {
+        font-size: 15px;
+        padding-left: 6px;
+        padding-right: 6px;
+
+        &.id-no {
+          text-align: left;
+        }
+
+        &.status {
+          .on-process {
+            background-color: orange;
+            border-radius: 10px;
+          }
+
+          .on-progress {
+            background-color: yellow;
+            border-radius: 10px;
+          }
+
+          .mobilized {
+            background-color: skyblue;
+            border-radius: 10px;
+          }
+
+          .delivered {
+            background-color: limegreen;
+            border-radius: 10px;
+          }
+
+          .canceled {
+            background-color: rgb(253, 115, 115);
+            border-radius: 10px;
+          }
+        }
+
+        &.type {
+          text-align: left;
+        }
+
+        &.name {
+          text-align: left;
+        }
+
+        &.branch {
+          text-align: left;
+        }
+      }
+    }
+  }
+}
