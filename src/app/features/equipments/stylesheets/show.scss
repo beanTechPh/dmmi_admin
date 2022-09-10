@@ -2,16 +2,21 @@
   .equipment {
     margin-top: 20px;
 
-    .image {
+    .carousel {
       width: 350px;
       height: 350px;
       overflow: hidden;
       border-radius: 5px;
       border: 1px solid rgba(0,0,0,0.125);
 
-      img {
+      .carousel-inner, .carousel-item {
         width: inherit;
         height: inherit;
+
+        img {
+          width: inherit;
+          height: inherit;
+        }
       }
     }
 

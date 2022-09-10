@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EquipmentsContextProvider, { EquipmentsContext } from '../contexts/equipmentsContext';
 import '../stylesheets/show.scss';
+import Carousel from 'react-bootstrap/Carousel';
 
 class EquipmentsShowView extends Component {
   state = {  } 
@@ -17,9 +18,13 @@ class EquipmentsShowView extends Component {
             <div id="equipments-show-page" className='page-container'>
               <h1 className="title">{equipment.name}</h1>
               <div className="equipment d-flex">
-                <div className="image">
-                  <img src={require("../../../core/images/free-standing-panel.jpg")} alt="" />
-                </div>
+                <Carousel variant="dark">
+                  {equipment.images.map(image => 
+                    <Carousel.Item key={image}>
+                      <img src={image} alt="" />
+                    </Carousel.Item>
+                  )}
+                </Carousel>
                 <div className="details">
                   <div className="group d-flex">
                     <div className="label">Name:</div>
@@ -36,10 +41,6 @@ class EquipmentsShowView extends Component {
                   <div className="group d-flex">
                     <div className="label">Branch:</div>
                     <div className="value">{equipment.branch}</div>
-                  </div>
-                  <div className="group d-flex">
-                    <div className="label">Origin:</div>
-                    <div className="value">{equipment.origin}</div>
                   </div>
                   <div className="group d-flex">
                     <div className="label">Descirption:</div>
