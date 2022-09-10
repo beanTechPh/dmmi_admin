@@ -47,7 +47,12 @@
         }
 
         &.branch {
+          width: 200px;
           text-align: left;
+        }
+
+        &.brand {
+          width: 100px;
         }
       }
     }
@@ -103,6 +108,10 @@
 
         &.name {
           text-align: left;
+
+          .info {
+            font-size: 13px;
+          }
         }
 
         &.branch {

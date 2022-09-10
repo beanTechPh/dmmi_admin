@@ -1,4 +1,5 @@
 import React, { createContext, Component } from 'react';
+import FlashManager from '../../../core/functions/flashManager';
 import Branch from '../../../core/models/branch';
 import Company from '../../../core/models/company';
 import Equipment from '../../../core/models/equipment';
@@ -16,7 +17,8 @@ class EquipmentsContextProvider extends Component {
     branches: [],
     showEquipment: null,
     companies: [],
-    productTypes: []
+    productTypes: [],
+    brands: []
    } 
 
   getData (config) {
@@ -27,8 +29,9 @@ class EquipmentsContextProvider extends Component {
     var page = config.page === undefined ? 1 : config.page 
     var keyword = config.keyword === undefined ? "" : config.keyword
     var type_filter = config.type_filter === undefined ? "" : config.type_filter
-    var origin_filter = config.origin_filter === undefined ? "" : config.origin_filter
+    // var origin_filter = config.origin_filter === undefined ? "" : config.origin_filter
     var branch_filter = config.branch_filter === undefined ? "" : config.branch_filter
+    var brand_filter = config.brand_filter === undefined ? "" : config.brand_filter
 
     config = {
       pathname: "/admin/equipments",
@@ -36,8 +39,9 @@ class EquipmentsContextProvider extends Component {
         page: page,
         keyword: keyword,
         type_filter: type_filter,
-        origin_filter: origin_filter,
-        branch_filter: branch_filter
+        // origin_filter: origin_filter,
+        branch_filter: branch_filter,
+        brand_filter: brand_filter
       },
       dataFunction: (data) => {
         var equipments = Equipment.rawDataToEquipments(data['equipments'])
@@ -45,8 +49,9 @@ class EquipmentsContextProvider extends Component {
         var equipmentsTotalPage = data['pagination']['total_page']
         var types = data['types']
         var branches = data['branches']
+        var brands = data['brands']
         
-        this.setState({ equipments, equipmentsPage, equipmentsTotalPage, types, branches })
+        this.setState({ equipments, equipmentsPage, equipmentsTotalPage, types, branches, brands })
       },
       errorFunction: (error) => {
       }
@@ -101,6 +106,7 @@ class EquipmentsContextProvider extends Component {
   componentDidMount(){
     if(window.location.pathname.split('/')[2] === 'new'){
       this.getNew()
+      document.querySelector("#is-from-dmmi").checked = true
     }else if(window.location.pathname.split('/')[2] !== '' && window.location.pathname.split('/')[2] !== undefined){
       this.getEquipment()
     }else{
@@ -112,7 +118,8 @@ class EquipmentsContextProvider extends Component {
     config = {
       keyword: document.querySelector("input#search").value,
       type_filter: document.querySelector("select#type-filter").value,
-      origin_filter: document.querySelector("select#origin-filter").value,
+      // origin_filter: document.querySelector("select#origin-filter").value,
+      brand_filter: document.querySelector("select#brand-filter").value,
       branch_filter: document.querySelector("select#branch-filter").value,
       page: 1,
       ...config,
@@ -136,7 +143,8 @@ class EquipmentsContextProvider extends Component {
     var isValid = true
 
     // text inputs
-    var textInputs = ["#name", "#product-type", "#origin", "#installed-date", "#brand", "#company", "#branch", "#description"]
+    var textInputs = ["#name", "#product-type", "#installed-date", "#company", "#branch", "#description"]
+
     for (let i = 0; i < textInputs.length; i++) {
       const id = textInputs[i];
       
@@ -169,21 +177,52 @@ class EquipmentsContextProvider extends Component {
       return false
     }
 
+    // Validate file
+    var _validFileExtensions = [".jpg", ".jpeg", ".png"];
+    var sFileName = document.querySelector("input#images").value;
+    if (sFileName.length > 0) {
+        var blnValid = false;
+        for (var j = 0; j < _validFileExtensions.length; j++) {
+            var sCurExtension = _validFileExtensions[j];
+            if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                blnValid = true;
+                break;
+            }
+        }
+        
+        if (!blnValid) {
+            FlashManager.setInstantFlashError("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "))
+            return false;
+        }
+    }
+
     // get form data
+    var checkbox = document.querySelector("#is-from-dmmi") 
+    var brandValue = "existing"
+    var images = Array.from(document.querySelector("input#images").files);
+    
+    if(checkbox.checked){
+      brandValue = "dmmi"
+    }else if(document.querySelector("#brand").value !== ""){
+      brandValue = document.querySelector("#brand").value
+    }
+
     var data = {
       name: document.querySelector("#name").value,
       product_type_id: document.querySelector("#product-type").value,
-      origin: document.querySelector("#origin").value,
+      // origin: document.querySelector("#origin").value,
       installed_date: document.querySelector("#installed-date").value,
-      brand: document.querySelector("#brand").value,
+      brand: brandValue,
       branch_id: document.querySelector("#branch").value,
       description: document.querySelector("#description").value,
+      images: images
     }
 
     var config = {
       pathname: "/admin/equipments",
       data: data,
       dataFunction: (data) => {
+        FlashManager.setFlashSuccess("Successfully added New Equipment!")
         window.location.href = `/equipments`
       },
       errorFunction: (error) => {
@@ -192,13 +231,28 @@ class EquipmentsContextProvider extends Component {
     postFetch(config)
   }
 
+  onCheckFromDMMI = (e) => {
+    var checkbox = e.target 
+    
+    var brandInput = document.querySelector("input#brand");
+    var brandFormGroup = brandInput.parentElement
+
+    brandInput.value = ""
+    if(checkbox.checked){
+      brandFormGroup.classList.add('hide')
+    }else{
+      brandFormGroup.classList.remove('hide')
+    }
+  }
+
   render() { 
     var value = {
       ...this.state,
       query: this.query,
       equipmentTableRowClick: this.equipmentTableRowClick,
       companyPick: this.companyPick,
-      createEquipment: this.createEquipment
+      createEquipment: this.createEquipment,
+      onCheckFromDMMI: this.onCheckFromDMMI
     }
 
     return (

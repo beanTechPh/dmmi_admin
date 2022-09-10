@@ -7,7 +7,7 @@ class EquipmentsNewView extends Component {
     return (
       <EquipmentsContextProvider>
         <EquipmentsContext.Consumer>{ context => {
-          const { companies, productTypes, branches, companyPick, createEquipment } = context 
+          const { companies, productTypes, branches, companyPick, createEquipment, onCheckFromDMMI } = context 
 
           return (
             <div id="equipmets-new-page" className="page-container">
@@ -28,20 +28,26 @@ class EquipmentsNewView extends Component {
                         )}
                       </select>
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                       <label htmlFor="origin">Origin</label>
                       <select name="origin" id="origin" className="form-select">
                         <option value="order">Order</option>
                         <option value="scan">Scan</option>
                       </select>
-                    </div>
+                    </div> */}
                     <div className="form-group">
                       <label htmlFor="installed-date">Installed Date</label>
                       <input type="date" name="installed-date" id="installed-date" className='form-control' />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group check d-flex">
+                      <input className="form-check-input" type="checkbox" value="" id="is-from-dmmi" onChange={onCheckFromDMMI}/>
+                      <label className="form-check-label" htmlFor="is-from-dmmi">
+                        Is the Equipment From DMMI?
+                      </label>
+                    </div>
+                    <div className="form-group hide">
                       <label htmlFor="brand">Brand</label>
-                      <input type="text" name="brand" id="brand" className="form-control" />
+                      <input type="text" name="brand" id="brand" className="form-control" placeholder='Optional...' />
                     </div>
                     <div className="form-group">
                       <label htmlFor="company">Company</label>
@@ -66,6 +72,10 @@ class EquipmentsNewView extends Component {
                     <div className="form-group">
                       <label htmlFor="description">Description</label>
                       <textarea name="description" id="description" cols="30" rows="10" className="form-control"></textarea>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="images">Images</label>
+                      <input type="file" name="images" id="images" className='form-control' multiple/>
                     </div>
                   </div>
                 </div>

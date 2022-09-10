@@ -30,7 +30,7 @@ class EquipmentsIndexView extends Component {
 
             <div className="filters d-flex">
               <EquipmentsContext.Consumer>{ context => {
-                const { types, branches, query } = context
+                const { types, branches, query, brands } = context
 
                 return (
                   <React.Fragment>
@@ -43,20 +43,29 @@ class EquipmentsIndexView extends Component {
                         )}
                       </select>
                     </div>
-                    <div className="group d-flex">
+                    {/* <div className="group d-flex">
                       <div className="label">Origin:</div>
                       <select name="origin" id="origin-filter" className='form-select' onChange={e => query()}>
                         <option value="">All Origins</option>
                         <option value="order">Order</option>
                         <option value="scan">Scan</option>
                       </select>
-                    </div>
+                    </div> */}
                     <div className="group d-flex">
                       <div className="label">Branch:</div>
                       <select name="branch" id="branch-filter" className='form-select' onChange={e => query()}>
                         <option value="">All Branches</option>
                         {branches.map( branch => 
                           <option key={branch.name} value={branch.name}>{branch.name}</option>
+                        )}
+                      </select>
+                    </div>
+                    <div className="group d-flex">
+                      <div className="label">Brands:</div>
+                      <select name="brand" id="brand-filter" className='form-select' onChange={e => query()}>
+                        <option value="">All Brands</option>
+                        {brands.map( brand => 
+                          <option key={brand} value={brand}>{brand}</option>
                         )}
                       </select>
                     </div>
@@ -70,9 +79,8 @@ class EquipmentsIndexView extends Component {
               <tr>
                 <th className='name'>Name</th>
                 <th className='type'>Type</th>
-                <th className="serial-no">Serial No</th>
                 <th className="branch">Branch</th>
-                <th className='origin'>Origin</th>
+                <th className="brand">Brand</th>
               </tr>
             </thead>
             <tbody>

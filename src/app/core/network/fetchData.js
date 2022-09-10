@@ -1,5 +1,6 @@
 import SessionsManager from "./sessionsManager";
 import { ApiUrl } from "./url";
+import axios from 'axios';
 
 export const postFetch = (config) => {
   var pathName = config.pathname
@@ -16,38 +17,53 @@ export const postFetch = (config) => {
   }
 
   document.querySelector("#loading-page").classList.remove('hide')
-  fetch((ApiUrl + pathName),
-  {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      ...SessionsManager.getHeaders()
-    },
-    method: "POST",
-    body: JSON.stringify(data)
-  })
-    .then(response => {
-      if (response.ok) {
-        SessionsManager.setHeaders(response)
 
-        return response.json();
-      }else if (response.status === 401) {
-        SessionsManager.destroyHeaders()
-        return window.location.href = `/sign_in`
+  const formData = new FormData();
+  for (const property in data) {
+    if(data[property].constructor === Array){
+      data[property].forEach(element => {
+        formData.append(
+          (property + "[]"), element
+        )
+      });
+    }else{
+      formData.append(
+        property, data[property]
+      )
+    }
+  }
+
+  axios.post(
+    (ApiUrl + pathName), 
+    formData,
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "Content-Type": "multipart/form-data",
+        ...SessionsManager.getHeaders()
       }
-      throw new Error('Something went wrong');
-    })
-    .then(data => {
+    }
+  ).then(response => {
+    console.log(response)
+    if (response.status === 200) {
+      SessionsManager.setHeaders(response)
+
+      let data = response.data
       if(data.constructor === Object){
         document.querySelector("#loading-page").classList.add('hide')
         dataFunction(data)
       }
-    })
-    .catch(error => {
-      console.log(error)
-      document.querySelector("#loading-page").classList.add('hide')
-      errorFunction(error)
-    });
+    }else if (response.status === 401) {
+      SessionsManager.destroyHeaders()
+      return window.location.href = `/sign_in`
+    }
+    throw new Error('Something went wrong');
+  }).catch(error => {
+    console.log(error)
+    document.querySelector("#loading-page").classList.add('hide')
+    errorFunction(error)
+  });
 }
 
 export const putFetch = (config) => {

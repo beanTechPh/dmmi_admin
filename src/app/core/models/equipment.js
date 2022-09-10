@@ -1,5 +1,5 @@
 class Equipment {
-  constructor(id, name, type, serialNo, origin, description, age, branch){
+  constructor(id, name, type, serialNo, origin, description, age, branch, brand){
     this.id = id
     this.name = name 
     this.type = type 
@@ -8,10 +8,11 @@ class Equipment {
     this.description = description
     this.age = age
     this.branch = branch
+    this.brand = brand
   }
 
   static rawDataToEquipment(rawData){
-    return new Equipment(rawData['id'], rawData['name'], rawData['type'], rawData['serial_no'], rawData['origin'], rawData['description'], rawData['age'], rawData['branch'])
+    return new Equipment(rawData['id'], rawData['name'], rawData['type'], rawData['serial_no'], rawData['origin'], rawData['description'], rawData['age'], rawData['branch'], rawData['brand'])
   }
 
   static rawDataToEquipments(rawData){

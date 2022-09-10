@@ -5,10 +5,9 @@ class SessionsManager {
     // reset cookies
     SessionsManager.destroyHeaders()
 
-    for(let entry of response.headers.entries()) {
-      console.log(entry)
-      if (headers.includes(entry[0])) {
-        document.cookie = (entry[0] + "=" + entry[1] + ";")
+    for(const header in response.headers) {
+      if (headers.includes(header)) {
+        document.cookie = (header + "=" + response.headers[header] + ";")
       }
     }
   }
