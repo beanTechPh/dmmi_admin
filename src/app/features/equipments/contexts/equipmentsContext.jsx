@@ -200,6 +200,7 @@ class EquipmentsContextProvider extends Component {
     var checkbox = document.querySelector("#is-from-dmmi") 
     var brandValue = "existing"
     var images = Array.from(document.querySelector("input#images").files);
+    var installed_date = new Date(document.querySelector("#installed-date").value)
     
     if(checkbox.checked){
       brandValue = "dmmi"
@@ -211,7 +212,7 @@ class EquipmentsContextProvider extends Component {
       name: document.querySelector("#name").value,
       product_type_id: document.querySelector("#product-type").value,
       // origin: document.querySelector("#origin").value,
-      installed_date: document.querySelector("#installed-date").value,
+      installed_date: installed_date,
       brand: brandValue,
       branch_id: document.querySelector("#branch").value,
       description: document.querySelector("#description").value,
