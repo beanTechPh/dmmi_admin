@@ -52,8 +52,16 @@ class EquipmentsShowView extends Component {
                     <div className="value">{equipment.branch}</div>
                   </div>
                   <div className="group d-flex">
+                    <div className="label">Brand:</div>
+                    <div className="value">{equipment.brand}</div>
+                  </div>
+                  <div className="group d-flex">
                     <div className="label">Descirption:</div>
                     <div className="value">{equipment.description}</div>
+                  </div>
+                  <div className="group d-flex">
+                    <div className="label">Installed Date:</div>
+                    <div className="value">{equipment.installedDate}</div>
                   </div>
                   <div className="group d-flex">
                     <div className="label">Age:</div>
