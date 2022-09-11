@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Pagination from '../../../core/utils/pagination';
 import EquipmentsContextProvider, { EquipmentsContext } from '../contexts/equipmentsContext';
 import '../stylesheets/index.scss';
 import EquipmentTableRows from './components/equipmentTableRows';
@@ -87,6 +88,13 @@ class EquipmentsIndexView extends Component {
               <EquipmentTableRows/>
             </tbody>
           </table>
+          <EquipmentsContext.Consumer>{context => {
+            const { equipmentsPage, equipmentsTotalPage, query } = context 
+
+            return(
+              <Pagination page={equipmentsPage} totalPage={equipmentsTotalPage} query={query} />
+            )
+          }}</EquipmentsContext.Consumer>
         </div>
       </EquipmentsContextProvider>
     );

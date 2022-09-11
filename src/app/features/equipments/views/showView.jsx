@@ -19,11 +19,20 @@ class EquipmentsShowView extends Component {
               <h1 className="title">{equipment.name}</h1>
               <div className="equipment d-flex">
                 <Carousel variant="dark">
-                  {equipment.images.map(image => 
-                    <Carousel.Item key={image}>
-                      <img src={image} alt="" />
+                  {equipment.images.lenght > 0 ?
+                    equipment.images.map(image => 
+                      <Carousel.Item key={image}>
+                        <img src={image} alt="" />
+                      </Carousel.Item>
+                    )
+                    :
+                    <Carousel.Item>
+                      <div className="not-available">
+                        <i className="bi bi-file-earmark-image"></i>
+                        <div className="label">IMAGE NOT AVAILABLE</div>
+                      </div>
                     </Carousel.Item>
-                  )}
+                  }
                 </Carousel>
                 <div className="details">
                   <div className="group d-flex">
