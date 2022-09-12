@@ -16,7 +16,12 @@ class EquipmentsShowView extends Component {
 
           return (
             <div id="equipments-show-page" className='page-container'>
-              <h1 className="title">{equipment.name}</h1>
+              <div className="d-flex justify-content-between">
+                <h1 className="title">{equipment.name}</h1>
+                <div className="action-btns">
+                  <button className="btn btn-primary btn-sm">Edit</button>
+                </div>
+              </div>
               <div className="equipment d-flex">
                 <Carousel variant="dark">
                   {equipment.images.lenght > 0 ?
@@ -70,8 +75,33 @@ class EquipmentsShowView extends Component {
                 </div>
               </div>
               <hr />
+              <div className="components">
+                <h3 className='sub-title'>Components</h3>
+                <div className="content d-flex">
+                  <div className="custom-card component-card">
+                    <div className="image">
+                      <img src={require("../../../core/images/free-standing-panel.jpg")} alt="" />
+                    </div>
+                    <div className="details">
+                      <div className="group">
+                        <div className="value">Breaker 1</div>
+                        <div className="label">NAME</div>
+                      </div>
+                      <div className="group">
+                        <div className="value">2</div>
+                        <div className="label">QTY</div>
+                      </div>
+                      <div className="group description">
+                        <div className="label">DESCRIPTION</div>
+                        <div className="value">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
               <div className="pms-content">
-
+                <h3 className='sub-title'>PMS</h3>
               </div>
               <div className="diagrams">
 
