@@ -24,7 +24,7 @@ class EquipmentsShowView extends Component {
               </div>
               <div className="equipment d-flex">
                 <Carousel variant="dark">
-                  {equipment.images.lenght > 0 ?
+                  {equipment.images.length > 0 ?
                     equipment.images.map(image => 
                       <Carousel.Item key={image}>
                         <img src={image} alt="" />
