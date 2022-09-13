@@ -177,9 +177,27 @@ class EquipmentsContextProvider extends Component {
       return false
     }
 
-    // Validate file
+    // Validate images
     var _validFileExtensions = [".jpg", ".jpeg", ".png"];
     var sFileName = document.querySelector("input#images").value;
+    if (sFileName.length > 0) {
+        var blnValid = false;
+        for (var j = 0; j < _validFileExtensions.length; j++) {
+            var sCurExtension = _validFileExtensions[j];
+            if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                blnValid = true;
+                break;
+            }
+        }
+        
+        if (!blnValid) {
+            FlashManager.setInstantFlashError("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "))
+            return false;
+        }
+    }
+
+    // validate schematics
+    var sFileName = document.querySelector("input#schematics").value;
     if (sFileName.length > 0) {
         var blnValid = false;
         for (var j = 0; j < _validFileExtensions.length; j++) {
@@ -200,6 +218,7 @@ class EquipmentsContextProvider extends Component {
     var checkbox = document.querySelector("#is-from-dmmi") 
     var brandValue = "existing"
     var images = Array.from(document.querySelector("input#images").files);
+    var schematics = Array.from(document.querySelector("input#schematics").files);
     var installed_date = new Date(document.querySelector("#installed-date").value)
     
     if(checkbox.checked){
@@ -216,7 +235,8 @@ class EquipmentsContextProvider extends Component {
       brand: brandValue,
       branch_id: document.querySelector("#branch").value,
       description: document.querySelector("#description").value,
-      images: images
+      images: images,
+      schematics: schematics,
     }
 
     var config = {

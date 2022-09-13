@@ -3,6 +3,10 @@
     align-items: center;
   }
 
+  .sub-title {
+    text-align: left;
+  }
+
   .equipment {
     margin-top: 20px;
 
@@ -129,9 +133,26 @@
     }
   }
 
-  .pms-content {
-    .sub-title {
-      text-align: left;
+  .schematics {
+    .carousel {
+      width: 90%;
+      height: 500px;
+      margin: auto;
+
+      .carousel-inner {
+        width: 100%;
+        height: inherit;
+
+        .carousel-item {
+          width: inherit;
+          height: inherit;
+
+          img {
+            width: inherit;
+            height: inherit;
+          }
+        }
+      }
     }
   }
 }

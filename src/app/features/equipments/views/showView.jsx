@@ -87,9 +87,15 @@ class EquipmentsShowView extends Component {
                         <div className="value">Breaker 1</div>
                         <div className="label">NAME</div>
                       </div>
-                      <div className="group">
-                        <div className="value">2</div>
-                        <div className="label">QTY</div>
+                      <div className="d-flex justify-content-evenly">
+                        <div className="group">
+                          <div className="value">Schneider</div>
+                          <div className="label">BRAND</div>
+                        </div>
+                        <div className="group">
+                          <div className="value">2</div>
+                          <div className="label">QTY</div>
+                        </div>
                       </div>
                       <div className="group description">
                         <div className="label">DESCRIPTION</div>
@@ -100,11 +106,25 @@ class EquipmentsShowView extends Component {
                 </div>
               </div>
               <hr />
-              <div className="pms-content">
-                <h3 className='sub-title'>PMS</h3>
+              <div className="schematics">
+                <h3 className='sub-title'>Schematics</h3>
+                <Carousel variant="dark">
+                  {equipment.schematics.length > 0 ?
+                    equipment.schematics.map(schematic => 
+                      <Carousel.Item key={schematic}>
+                        <img src={schematic} alt="" />
+                      </Carousel.Item>
+                    )
+                    :
+                    <Carousel.Item>
+                      <img src={require("../../../core/images/free-standing-panel.jpg")} alt="" />
+                    </Carousel.Item>
+                  }
+                </Carousel>
               </div>
-              <div className="diagrams">
-
+              <hr />
+              <div className="pms-content">
+                <h3 className='sub-title'>PMS / Test Report</h3>
               </div>
               <div className="documentation">
 
