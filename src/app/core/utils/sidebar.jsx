@@ -69,10 +69,10 @@ class SidebarComponent extends Component {
                   Quotations
                 </li>
               </Link> */}
-              <Link to={'/employees'} onClick={this.sidebarMenuClick}>
-                <li className='d-flex' id='sidebar-employees'>
+              <Link to={'/admins'} onClick={this.sidebarMenuClick}>
+                <li className='d-flex' id='sidebar-admins'>
                   <img src={require("../images/sidebar/personnel.png")} alt="" />
-                  Employees
+                  Admins
                 </li>
               </Link>
             </ul>

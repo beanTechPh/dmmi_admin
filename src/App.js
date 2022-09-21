@@ -9,7 +9,7 @@ import SignInView from './app/features/auth/views/signinView';
 import EquipmentsIndexView from './app/features/equipments/views/indexView';
 import EquipmentsShowView from './app/features/equipments/views/showView';
 import EquipmentsNewView from './app/features/equipments/views/newView';
-import EmployeesIndexView from './app/features/employees/views/indexView';
+import AdminsIndexView from './app/features/admins/views/indexView';
 
 function App() {
   return (
@@ -26,8 +26,8 @@ function App() {
               <Route path=":serialNo" element={<EquipmentsShowView />} />
             </Route>
             
-            <Route path="employees">
-              <Route path="" element={<EmployeesIndexView />} />
+            <Route path="admins">
+              <Route path="" element={<AdminsIndexView />} />
             </Route>
           </Route>
         </Routes>
