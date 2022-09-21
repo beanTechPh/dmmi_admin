@@ -18,20 +18,8 @@ export const postFetch = (config) => {
 
   document.querySelector("#loading-page").classList.remove('hide')
 
-  const formData = new FormData();
-  for (const property in data) {
-    if(data[property].constructor === Array){
-      data[property].forEach(element => {
-        formData.append(
-          (property + "[]"), element
-        )
-      });
-    }else{
-      formData.append(
-        property, data[property]
-      )
-    }
-  }
+  var formData = new FormData();
+  formData = createFormData(formData, data)
 
   axios.post(
     (ApiUrl + pathName), 
@@ -216,4 +204,34 @@ export const getFetch = (config) => {
       console.log("Error:", error)
       errorFunction(error)
     });
+}
+
+const createFormData = (formData, data) => {
+  for (const property in data) {
+    if(data[property].constructor === Array){
+      data[property].forEach(element => {
+        if(element.constructor === Object){
+          for (const elementProperty in element) {
+            formData.append(
+              (property + `[]${elementProperty}`), element[elementProperty]
+            )
+          }
+        }else{
+          formData.append(
+            (property + "[]"), element
+          )
+        }
+      });
+    }else if(data[property].constructor === Object){
+      formData.append(
+        property, createFormData(data[property])
+      )
+    }else{
+      formData.append(
+        property, data[property]
+      )
+    }
+  }
+
+  return formData
 }

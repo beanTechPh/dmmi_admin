@@ -2,6 +2,7 @@ import React, { createContext, Component } from 'react';
 import FlashManager from '../../../core/functions/flashManager';
 import Branch from '../../../core/models/branch';
 import Company from '../../../core/models/company';
+import EquipComponent from '../../../core/models/component';
 import Equipment from '../../../core/models/equipment';
 import ProductType from '../../../core/models/productType';
 import { getFetch, postFetch } from '../../../core/network/fetchData';
@@ -18,7 +19,8 @@ class EquipmentsContextProvider extends Component {
     showEquipment: null,
     companies: [],
     productTypes: [],
-    brands: []
+    brands: [],
+    newComponents: []
    } 
 
   getData (config) {
@@ -82,7 +84,7 @@ class EquipmentsContextProvider extends Component {
     if (config === undefined){
       config = {}
     }
-    
+
     config = {
       pathname: "/admin/equipments/new",
       data: {
@@ -214,6 +216,60 @@ class EquipmentsContextProvider extends Component {
         }
     }
 
+    // validate components
+    this.state.newComponents.forEach(component => {
+      var componentCard = document.querySelector("#component-" + component.id)
+      var inputs = ["input[name='comp-name']", "input[name='comp-brand']", "input[name='comp-qty']", "input[name='comp-description']"]
+
+      for (let i = 0; i < inputs.length; i++) {
+        const input = inputs[i];
+
+        // validate image
+        var sFileName = componentCard.querySelector("input[name='image']").value;
+        if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
+            }
+            
+            if (!blnValid) {
+                FlashManager.setInstantFlashError("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "))
+                return false;
+            }
+        }
+
+        if(componentCard.querySelector(input).value === ""){
+          componentCard.querySelector(input).classList.add('empty')
+          isValid = false
+          break
+        }else{
+          componentCard.querySelector(input).classList.remove('empty')
+        }
+      }
+    });
+
+    if(!isValid){
+      return false
+    }
+
+    // get components
+    var components = []
+    this.state.newComponents.forEach(component => {
+      var componentCard = document.querySelector("#component-" + component.id)
+
+      components.push({
+        image: componentCard.querySelector("input[name='image']").files[0],
+        name: componentCard.querySelector("input[name='comp-name']").value,
+        brand: componentCard.querySelector("input[name='comp-brand']").value,
+        qty: componentCard.querySelector("input[name='comp-qty']").value,
+        description: componentCard.querySelector("input[name='comp-description']").value,
+      })
+    });
+
     // get form data
     var checkbox = document.querySelector("#is-from-dmmi") 
     var brandValue = "existing"
@@ -237,6 +293,7 @@ class EquipmentsContextProvider extends Component {
       description: document.querySelector("#description").value,
       images: images,
       schematics: schematics,
+      components: components
     }
 
     var config = {
@@ -266,6 +323,18 @@ class EquipmentsContextProvider extends Component {
     }
   }
 
+  addComponent = (e) => {
+    var { newComponents } = this.state
+
+    if(newComponents.length === 0){
+      this.setState({ newComponents: [ EquipComponent.rawDataToEquipComponent({'id': 1}) ]})
+    }else{
+      var lastId = newComponents[newComponents.length - 1].id 
+
+      this.setState({ newComponents: [...newComponents, EquipComponent.rawDataToEquipComponent({'id': lastId + 1}) ]})
+    }
+  }
+
   render() { 
     var value = {
       ...this.state,
@@ -273,7 +342,8 @@ class EquipmentsContextProvider extends Component {
       equipmentTableRowClick: this.equipmentTableRowClick,
       companyPick: this.companyPick,
       createEquipment: this.createEquipment,
-      onCheckFromDMMI: this.onCheckFromDMMI
+      onCheckFromDMMI: this.onCheckFromDMMI,
+      addComponent: this.addComponent
     }
 
     return (

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import EquipmentsContextProvider, { EquipmentsContext } from '../contexts/equipmentsContext';
+import "../stylesheets/new.scss";
+import NewComponents from './components/newComponents';
 
 class EquipmentsNewView extends Component {
   state = {  } 
@@ -78,12 +80,24 @@ class EquipmentsNewView extends Component {
                   </div>
                 </div>
               </div>
-              <div className="components">
-
-              </div>
               <div className="form-group">
                 <label htmlFor="schematics">Schematics</label>
                 <input type="file" name="schematics" id="schematics" className='form-control' multiple/>
+              </div>
+              <div className="components">
+                <div className="d-flex header">
+                  <h3>Components</h3>
+                  <EquipmentsContext.Consumer>{ context => {
+                    const { addComponent } = context 
+
+                    return (
+                      <button className="btn btn-primary btn-sm" onClick={addComponent}>Add</button>
+                    )
+                  }}</EquipmentsContext.Consumer>
+                </div>
+                <div className="d-flex content">
+                  <NewComponents />
+                </div>
               </div>
               <button className="btn btn-primary btn-sm" onClick={createEquipment}>Save</button>
             </div>
