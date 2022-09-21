@@ -1,7 +1,8 @@
 import { ApiUrl } from "../network/url"
+import EquipComponent from "./equipComponent"
 
 class Equipment {
-  constructor(id, name, type, serialNo, origin, description, age, branch, brand, images, installedDate, schematics){
+  constructor(id, name, type, serialNo, origin, description, age, branch, brand, images, installedDate, schematics, components){
     this.id = id
     this.name = name 
     this.type = type 
@@ -14,6 +15,7 @@ class Equipment {
     this.images = []
     this.installedDate = installedDate
     this.schematics = []
+    this.components = components === null || components === undefined ? [] : EquipComponent.rawDataToEquipComponents(components)
 
     images.forEach(image => {
       this.images.push(ApiUrl + image)
@@ -25,7 +27,7 @@ class Equipment {
   }
 
   static rawDataToEquipment(rawData){
-    return new Equipment(rawData['id'], rawData['name'], rawData['type'], rawData['serial_no'], rawData['origin'], rawData['description'], rawData['age'], rawData['branch'], rawData['brand'], rawData['images'], rawData['installed_date'], rawData['schematics'])
+    return new Equipment(rawData['id'], rawData['name'], rawData['type'], rawData['serial_no'], rawData['origin'], rawData['description'], rawData['age'], rawData['branch'], rawData['brand'], rawData['images'], rawData['installed_date'], rawData['schematics'], rawData['components'])
   }
 
   static rawDataToEquipments(rawData){

@@ -2,7 +2,7 @@ import React, { createContext, Component } from 'react';
 import FlashManager from '../../../core/functions/flashManager';
 import Branch from '../../../core/models/branch';
 import Company from '../../../core/models/company';
-import EquipComponent from '../../../core/models/component';
+import EquipComponent from '../../../core/models/equipComponent';
 import Equipment from '../../../core/models/equipment';
 import ProductType from '../../../core/models/productType';
 import { getFetch, postFetch } from '../../../core/network/fetchData';
@@ -70,6 +70,7 @@ class EquipmentsContextProvider extends Component {
       data: {},
       dataFunction: (data) => {
         var showEquipment = Equipment.rawDataToEquipment(data['equipment'])
+        console.log(showEquipment)
         
         this.setState({ showEquipment })
       },

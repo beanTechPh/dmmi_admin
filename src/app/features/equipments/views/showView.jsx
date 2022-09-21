@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EquipmentsContextProvider, { EquipmentsContext } from '../contexts/equipmentsContext';
 import '../stylesheets/show.scss';
 import Carousel from 'react-bootstrap/Carousel';
+import ComponentCard from './components/componentCard';
 
 class EquipmentsShowView extends Component {
   state = {  } 
@@ -78,31 +79,9 @@ class EquipmentsShowView extends Component {
               <div className="components">
                 <h3 className='sub-title'>Components</h3>
                 <div className="content d-flex">
-                  <div className="custom-card component-card">
-                    <div className="image">
-                      <img src={require("../../../core/images/free-standing-panel.jpg")} alt="" />
-                    </div>
-                    <div className="details">
-                      <div className="group">
-                        <div className="value">Breaker 1</div>
-                        <div className="label">NAME</div>
-                      </div>
-                      <div className="d-flex justify-content-evenly">
-                        <div className="group">
-                          <div className="value">Schneider</div>
-                          <div className="label">BRAND</div>
-                        </div>
-                        <div className="group">
-                          <div className="value">2</div>
-                          <div className="label">QTY</div>
-                        </div>
-                      </div>
-                      <div className="group description">
-                        <div className="label">DESCRIPTION</div>
-                        <div className="value">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</div>
-                      </div>
-                    </div>
-                  </div>
+                  {equipment.components.map(component => 
+                    <ComponentCard key={component.id} component={component} />
+                  )}
                 </div>
               </div>
               <hr />
