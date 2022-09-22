@@ -44,14 +44,6 @@ class EquipmentsIndexView extends Component {
                         )}
                       </select>
                     </div>
-                    {/* <div className="group d-flex">
-                      <div className="label">Origin:</div>
-                      <select name="origin" id="origin-filter" className='form-select' onChange={e => query()}>
-                        <option value="">All Origins</option>
-                        <option value="order">Order</option>
-                        <option value="scan">Scan</option>
-                      </select>
-                    </div> */}
                     <div className="group d-flex">
                       <div className="label">Branch:</div>
                       <select name="branch" id="branch-filter" className='form-select' onChange={e => query()}>

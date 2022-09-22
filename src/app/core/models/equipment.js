@@ -17,13 +17,17 @@ class Equipment {
     this.schematics = []
     this.components = components === null || components === undefined ? [] : EquipComponent.rawDataToEquipComponents(components)
 
-    images.forEach(image => {
-      this.images.push(ApiUrl + image)
-    });
+    if(images !== null && images !== undefined){
+      images.forEach(image => {
+        this.images.push(ApiUrl + image)
+      });
+    }
 
-    schematics.forEach(schematic => {
-      this.schematics.push(ApiUrl + schematic)
-    });
+    if(schematics !== null && schematics !== undefined){
+      schematics.forEach(schematic => {
+        this.schematics.push(ApiUrl + schematic)
+      });
+    }
   }
 
   static rawDataToEquipment(rawData){

@@ -31,7 +31,6 @@ class EquipmentsContextProvider extends Component {
     var page = config.page === undefined ? 1 : config.page 
     var keyword = config.keyword === undefined ? "" : config.keyword
     var type_filter = config.type_filter === undefined ? "" : config.type_filter
-    // var origin_filter = config.origin_filter === undefined ? "" : config.origin_filter
     var branch_filter = config.branch_filter === undefined ? "" : config.branch_filter
     var brand_filter = config.brand_filter === undefined ? "" : config.brand_filter
 
@@ -41,7 +40,6 @@ class EquipmentsContextProvider extends Component {
         page: page,
         keyword: keyword,
         type_filter: type_filter,
-        // origin_filter: origin_filter,
         branch_filter: branch_filter,
         brand_filter: brand_filter
       },
@@ -70,7 +68,6 @@ class EquipmentsContextProvider extends Component {
       data: {},
       dataFunction: (data) => {
         var showEquipment = Equipment.rawDataToEquipment(data['equipment'])
-        console.log(showEquipment)
         
         this.setState({ showEquipment })
       },
@@ -121,7 +118,6 @@ class EquipmentsContextProvider extends Component {
     config = {
       keyword: document.querySelector("input#search").value,
       type_filter: document.querySelector("select#type-filter").value,
-      // origin_filter: document.querySelector("select#origin-filter").value,
       brand_filter: document.querySelector("select#brand-filter").value,
       branch_filter: document.querySelector("select#branch-filter").value,
       page: 1,
