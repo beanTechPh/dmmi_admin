@@ -10,8 +10,13 @@ import EquipmentsIndexView from './app/features/equipments/views/indexView';
 import EquipmentsShowView from './app/features/equipments/views/showView';
 import EquipmentsNewView from './app/features/equipments/views/newView';
 import AdminsIndexView from './app/features/admins/views/indexView';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    document.title = 'DMMI System';
+  });
+
   return (
     <Router>
       <div className="App">

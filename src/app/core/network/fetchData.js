@@ -180,15 +180,9 @@ export const getFetch = (config) => {
     headers: SessionsManager.getHeaders()
   }).then(response => {
       if (response.ok) {
-        // SessionsManager.setHeaders(response)
-
         return response.json();
       }else if (response.status === 401) {
-        console.log("headers", SessionsManager.getHeaders())
         SessionsManager.destroyHeaders()
-        console.log(response)
-        console.log("headers", SessionsManager.getHeaders())
-        alert("Asd")
         return window.location.href = `/sign_in`
       }
       throw new Error('Something went wrong');
