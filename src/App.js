@@ -11,6 +11,7 @@ import EquipmentsShowView from './app/features/equipments/views/showView';
 import EquipmentsNewView from './app/features/equipments/views/newView';
 import AdminsIndexView from './app/features/admins/views/indexView';
 import { useEffect } from 'react';
+import DashboardIndexView from './app/features/dashboard/views/indexView';
 
 function App() {
   useEffect(() => {
@@ -25,6 +26,10 @@ function App() {
           <Route path="/sign_in" element={<SignInView />} />
 
           <Route path="/" element={<Layout />} >
+            <Route path="">
+              <Route path="" element={<DashboardIndexView />} />
+            </Route>
+
             <Route path="equipments">
               <Route path="" element={<EquipmentsIndexView />} />
               <Route path="new" element={<EquipmentsNewView />} />

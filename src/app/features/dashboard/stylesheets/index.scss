@@ -1,0 +1,56 @@
+#dashboard-page {
+  .filter-container {
+    height: fit-content;
+    padding: 10px;
+    margin-top: 10px;
+    
+    .search {
+      position: relative;
+      height: fit-content;
+      width: 300px;
+
+      input {
+        border-radius: 30px;
+        padding: 3px 10px;
+        font-size: 12px;
+      }
+
+      i {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+      }
+    }
+
+    .actions {
+      width: calc(100% - 300px);
+    }
+
+    .filters {
+      margin-top: 20px;
+
+      .group {
+        align-items: center;
+        margin-right: 20px;
+
+        .label {
+          font-size: 12px;
+          font-weight: bold;
+        }
+
+        select {
+          border-radius: 30px;
+          padding: 3px 5px;
+          padding-right: 35px;
+          margin-left: 5px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .table {
+    margin-top: 20px;
+  }
+}

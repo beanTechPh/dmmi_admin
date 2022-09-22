@@ -41,13 +41,13 @@ class SidebarComponent extends Component {
             <div className="label">Menu</div>
             <div className="menu">
               <ul>
-                {/* <Link to={'/'} onClick={this.sidebarMenuClick}>
+                <Link to={'/'} onClick={this.sidebarMenuClick}>
                   <li className='d-flex' id='sidebar-dashboard'>
                     <img src={require("../images/sidebar/dashboard.png")} alt="" />
                     Dashboard
                   </li>
                 </Link>
-                <Link to={'/orders'} onClick={this.sidebarMenuClick}>
+                {/* <Link to={'/orders'} onClick={this.sidebarMenuClick}>
                   <li className='d-flex' id='sidebar-orders'>
                     <img src={require("../images/sidebar/order.png")} alt="" />
                     Orders
