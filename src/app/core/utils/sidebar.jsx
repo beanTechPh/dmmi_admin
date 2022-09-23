@@ -8,7 +8,7 @@ class SidebarComponent extends Component {
 
   componentDidMount() {
     var tab = window.location.pathname.split('/')[1]
-    tab = tab === '' || tab === null || tab === undefined ? 'equipments' : tab
+    tab = tab === '' || tab === null || tab === undefined ? 'dashboard' : tab
     document.querySelector(`#sidebar-${tab}`).classList.add('active')
   }
 

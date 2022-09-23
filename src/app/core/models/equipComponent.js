@@ -7,7 +7,11 @@ class EquipComponent {
     this.brand = brand 
     this.qty = qty 
     this.description = description
-    this.image = ApiUrl + image
+    this.image = null
+
+    if(image !== null && image !== undefined){
+      this.image = ApiUrl + image
+    }
   }
 
   static rawDataToEquipComponent(rawData){

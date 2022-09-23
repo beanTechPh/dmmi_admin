@@ -3,6 +3,7 @@ import EquipmentsContextProvider, { EquipmentsContext } from '../contexts/equipm
 import '../stylesheets/show.scss';
 import Carousel from 'react-bootstrap/Carousel';
 import ComponentCard from './components/componentCard';
+import PDFViewer from '../../../core/utils/pdfViewer';
 
 class EquipmentsShowView extends Component {
   state = {  } 
@@ -105,8 +106,10 @@ class EquipmentsShowView extends Component {
               <div className="pms-content">
                 <h3 className='sub-title'>PMS / Test Report</h3>
               </div>
+              <hr />
               <div className="documentation">
-
+                <h3 className='sub-title'>Documentation</h3>
+                <PDFViewer url={equipment.documentation} />
               </div>
             </div>
           )

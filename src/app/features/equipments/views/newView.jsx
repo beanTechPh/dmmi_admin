@@ -84,6 +84,10 @@ class EquipmentsNewView extends Component {
                 <label htmlFor="schematics">Schematics</label>
                 <input type="file" name="schematics" id="schematics" className='form-control' multiple/>
               </div>
+              <div className="form-group">
+                <label htmlFor="documentation">Documentation</label>
+                <input type="file" name="documentation" id="documentation" className='form-control'/>
+              </div>
               <div className="components">
                 <div className="d-flex header">
                   <h3>Components</h3>

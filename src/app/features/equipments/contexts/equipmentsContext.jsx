@@ -213,6 +213,25 @@ class EquipmentsContextProvider extends Component {
         }
     }
 
+    // validate documentation
+    var _documValidFileExtensions = [".pdf"];
+    var sFileName = document.querySelector("input#documentation").value;
+    if (sFileName.length > 0) {
+        var blnValid = false;
+        for (var j = 0; j < _documValidFileExtensions.length; j++) {
+            var sCurExtension = _documValidFileExtensions[j];
+            if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                blnValid = true;
+                break;
+            }
+        }
+        
+        if (!blnValid) {
+            FlashManager.setInstantFlashError("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _documValidFileExtensions.join(", "))
+            return false;
+        }
+    }
+
     // validate components
     this.state.newComponents.forEach(component => {
       var componentCard = document.querySelector("#component-" + component.id)
@@ -272,6 +291,7 @@ class EquipmentsContextProvider extends Component {
     var brandValue = "existing"
     var images = Array.from(document.querySelector("input#images").files);
     var schematics = Array.from(document.querySelector("input#schematics").files);
+    var documentation = document.querySelector("input#documentation").files[0];
     var installed_date = new Date(document.querySelector("#installed-date").value)
     
     if(checkbox.checked){
@@ -283,13 +303,13 @@ class EquipmentsContextProvider extends Component {
     var data = {
       name: document.querySelector("#name").value,
       product_type_id: document.querySelector("#product-type").value,
-      // origin: document.querySelector("#origin").value,
       installed_date: installed_date,
       brand: brandValue,
       branch_id: document.querySelector("#branch").value,
       description: document.querySelector("#description").value,
       images: images,
       schematics: schematics,
+      documentation: documentation,
       components: components
     }
 

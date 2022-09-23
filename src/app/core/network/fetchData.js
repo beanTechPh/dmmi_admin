@@ -45,8 +45,9 @@ export const postFetch = (config) => {
     }else if (response.status === 401) {
       SessionsManager.destroyHeaders()
       return window.location.href = `/sign_in`
+    }else{
+      throw new Error('Something went wrong');
     }
-    throw new Error('Something went wrong');
   }).catch(error => {
     console.log(error)
     document.querySelector("#loading-page").classList.add('hide')
