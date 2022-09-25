@@ -24,56 +24,61 @@ class EquipmentsShowView extends Component {
                   <button className="btn btn-primary btn-sm">Edit</button>
                 </div>
               </div>
-              <div className="equipment d-flex">
-                <Carousel variant="dark">
-                  {equipment.images.length > 0 ?
-                    equipment.images.map(image => 
-                      <Carousel.Item key={image}>
-                        <img src={image} alt="" />
+              <div className="d-flex justify-content-between">
+                <div className="equipment d-flex">
+                  <Carousel variant="dark">
+                    {equipment.images.length > 0 ?
+                      equipment.images.map(image => 
+                        <Carousel.Item key={image}>
+                          <img src={image} alt="" />
+                        </Carousel.Item>
+                      )
+                      :
+                      <Carousel.Item>
+                        <div className="not-available">
+                          <i className="bi bi-file-earmark-image"></i>
+                          <div className="label">IMAGE NOT AVAILABLE</div>
+                        </div>
                       </Carousel.Item>
-                    )
-                    :
-                    <Carousel.Item>
-                      <div className="not-available">
-                        <i className="bi bi-file-earmark-image"></i>
-                        <div className="label">IMAGE NOT AVAILABLE</div>
-                      </div>
-                    </Carousel.Item>
-                  }
-                </Carousel>
-                <div className="details">
-                  <div className="group d-flex">
-                    <div className="label">Name:</div>
-                    <div className="value">{equipment.name}</div>
+                    }
+                  </Carousel>
+                  <div className="details">
+                    <div className="group d-flex">
+                      <div className="label">Name:</div>
+                      <div className="value">{equipment.name}</div>
+                    </div>
+                    <div className="group d-flex">
+                      <div className="label">Type:</div>
+                      <div className="value">{equipment.type}</div>
+                    </div>
+                    <div className="group d-flex">
+                      <div className="label">Serial No:</div>
+                      <div className="value">{equipment.serialNo}</div>
+                    </div>
+                    <div className="group d-flex">
+                      <div className="label">Branch:</div>
+                      <div className="value">{equipment.branch}</div>
+                    </div>
+                    <div className="group d-flex">
+                      <div className="label">Brand:</div>
+                      <div className="value">{equipment.brand}</div>
+                    </div>
+                    <div className="group d-flex">
+                      <div className="label">Descirption:</div>
+                      <div className="value">{equipment.description}</div>
+                    </div>
+                    <div className="group d-flex">
+                      <div className="label">Installed Date:</div>
+                      <div className="value">{equipment.installedDate}</div>
+                    </div>
+                    <div className="group d-flex">
+                      <div className="label">Age:</div>
+                      <div className="value">{equipment.age}</div>
+                    </div>
                   </div>
-                  <div className="group d-flex">
-                    <div className="label">Type:</div>
-                    <div className="value">{equipment.type}</div>
-                  </div>
-                  <div className="group d-flex">
-                    <div className="label">Serial No:</div>
-                    <div className="value">{equipment.serialNo}</div>
-                  </div>
-                  <div className="group d-flex">
-                    <div className="label">Branch:</div>
-                    <div className="value">{equipment.branch}</div>
-                  </div>
-                  <div className="group d-flex">
-                    <div className="label">Brand:</div>
-                    <div className="value">{equipment.brand}</div>
-                  </div>
-                  <div className="group d-flex">
-                    <div className="label">Descirption:</div>
-                    <div className="value">{equipment.description}</div>
-                  </div>
-                  <div className="group d-flex">
-                    <div className="label">Installed Date:</div>
-                    <div className="value">{equipment.installedDate}</div>
-                  </div>
-                  <div className="group d-flex">
-                    <div className="label">Age:</div>
-                    <div className="value">{equipment.age}</div>
-                  </div>
+                </div>
+                <div className="qr-code">
+                  <img src={equipment.qrCode} alt="" />
                 </div>
               </div>
               <hr />

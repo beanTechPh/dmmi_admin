@@ -79,6 +79,25 @@
         background-color: #daf8ff;
       }
 
+      &.empty-table {
+        cursor: default;
+      
+        &:hover {
+          background-color: transparent;
+        }
+
+        td {
+          img {
+            margin-top: 10px;
+            height: 300px;
+          }
+
+          h3 {
+            margin-top: 10px;
+          }
+        }
+      }
+
       td {
         font-size: 15px;
         padding-left: 6px;
