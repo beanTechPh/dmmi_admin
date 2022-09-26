@@ -4,6 +4,7 @@ import '../stylesheets/show.scss';
 import Carousel from 'react-bootstrap/Carousel';
 import ComponentCard from './components/componentCard';
 import PDFViewer from '../../../core/utils/pdfViewer';
+import { Link } from 'react-router-dom';
 
 class EquipmentsShowView extends Component {
   state = {  } 
@@ -21,7 +22,7 @@ class EquipmentsShowView extends Component {
               <div className="d-flex justify-content-between">
                 <h1 className="title">{equipment.name}</h1>
                 <div className="action-btns">
-                  <button className="btn btn-primary btn-sm">Edit</button>
+                  <Link to={"/equipments/" + equipment.id + "/edit"} className='btn btn-primary btn-sm'>Edit</Link>
                 </div>
               </div>
               <div className="d-flex justify-content-between">

@@ -12,6 +12,7 @@ import EquipmentsNewView from './app/features/equipments/views/newView';
 import AdminsIndexView from './app/features/admins/views/indexView';
 import { useEffect } from 'react';
 import DashboardIndexView from './app/features/dashboard/views/indexView';
+import EquipmentsEditView from './app/features/equipments/views/editView';
 
 function App() {
   useEffect(() => {
@@ -33,7 +34,8 @@ function App() {
             <Route path="equipments">
               <Route path="" element={<EquipmentsIndexView />} />
               <Route path="new" element={<EquipmentsNewView />} />
-              <Route path=":serialNo" element={<EquipmentsShowView />} />
+              <Route path=":id" element={<EquipmentsShowView />} />
+              <Route path=":id/edit" element={<EquipmentsEditView />} />
             </Route>
             
             <Route path="admins">
