@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import AdminsContextProvider, { AdminsContext } from '../contexts/adminsContext';
 import "../stylesheets/index.scss";
+import AdminAddModal from './components/adminAddModal';
 import AdminTableRows from './components/adminTableRows';
 
 class AdminsIndexView extends Component {
   state = {  } 
+
+  addAdminClick = (e) => {
+    document.querySelector("#admin-add-modal").classList.remove('hide')
+  }
+
   render() { 
     return (
       <AdminsContextProvider>
@@ -23,7 +29,7 @@ class AdminsIndexView extends Component {
                 }}</AdminsContext.Consumer>
               </div>
               <div className="actions d-flex justify-content-end">
-                <button className='btn btn-primary btn-sm'>Add</button>
+                <button className='btn btn-primary btn-sm' onClick={this.addAdminClick}>Add</button>
               </div>
             </div>
           </div>
@@ -40,6 +46,7 @@ class AdminsIndexView extends Component {
               <AdminTableRows/>
             </tbody>
           </table>
+          <AdminAddModal />
         </div>
       </AdminsContextProvider>
     );
