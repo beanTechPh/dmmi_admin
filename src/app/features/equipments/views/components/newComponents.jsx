@@ -4,13 +4,13 @@ import { EquipmentsContext } from '../../contexts/equipmentsContext';
 
 const NewComponents = () => {
   const context = useContext( EquipmentsContext );
-  const { newComponents } = context;
+  const { newComponents, deleteComponent } = context;
 
   return (
     <React.Fragment>
       {newComponents.map( component => 
         <div className="custom-card component-card" key={component.id} id={'component-' + component.id}>
-          <i className="bi bi-x-lg"></i>
+          <i className="bi bi-x-lg" onClick={e => deleteComponent(component)}></i>
           <div className="form-group">
             <label htmlFor="image">Image</label>
             <input type="file" name="image" id="" className='form-control' value={component.tempImage}/>

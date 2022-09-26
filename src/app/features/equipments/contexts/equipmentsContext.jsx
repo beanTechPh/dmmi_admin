@@ -352,6 +352,12 @@ class EquipmentsContextProvider extends Component {
     }
   }
 
+  deleteComponent = (component) => {
+    var newComponents = [...this.state.newComponents].filter(comp => comp.id !== component.id)
+
+    this.setState({ newComponents })
+  }
+
   render() { 
     var value = {
       ...this.state,
@@ -360,7 +366,8 @@ class EquipmentsContextProvider extends Component {
       companyPick: this.companyPick,
       createEquipment: this.createEquipment,
       onCheckFromDMMI: this.onCheckFromDMMI,
-      addComponent: this.addComponent
+      addComponent: this.addComponent,
+      deleteComponent: this.deleteComponent
     }
 
     return (
