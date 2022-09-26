@@ -13,10 +13,25 @@ import AdminsIndexView from './app/features/admins/views/indexView';
 import { useEffect } from 'react';
 import DashboardIndexView from './app/features/dashboard/views/indexView';
 import EquipmentsEditView from './app/features/equipments/views/editView';
+import FlashManager from './app/core/functions/flashManager';
 
 function App() {
   useEffect(() => {
     document.title = 'DMMI System';
+
+    // remove flash if refreshed
+    var flashes = FlashManager.getFlash()
+    for (const flash in flashes) {
+      if(flashes[flash] !== ""){
+        FlashManager.setUrls()
+
+        var urls = FlashManager.getUrls
+        if(urls['current-url'] !== "" && urls['prev-url'] !== ""){
+          FlashManager.removeFlash()
+          FlashManager.removeUrls()
+        }
+      }
+    }
   });
 
   return (
