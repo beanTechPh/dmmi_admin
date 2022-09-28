@@ -59,13 +59,13 @@ class SidebarComponent extends Component {
                     Equipment
                   </li>
                 </Link>
-                {/* <Link to={'/inquiries'} onClick={this.sidebarMenuClick}>
+                <Link to={'/inquiries'} onClick={this.sidebarMenuClick}>
                   <li className='d-flex' id='sidebar-inquiries'>
                     <img src={require("../images/sidebar/inquiry.png")} alt="" />
                     Inquiries
                   </li>
                 </Link>
-                <Link to={'/quotations'} onClick={this.sidebarMenuClick}>
+                {/* <Link to={'/quotations'} onClick={this.sidebarMenuClick}>
                   <li className='d-flex' id='sidebar-quotations'>
                     <img src={require("../images/sidebar/quotation.png")} alt="" />
                     Quotations

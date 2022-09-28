@@ -14,6 +14,8 @@ import { useEffect } from 'react';
 import DashboardIndexView from './app/features/dashboard/views/indexView';
 import EquipmentsEditView from './app/features/equipments/views/editView';
 import FlashManager from './app/core/functions/flashManager';
+import InquiriesIndexView from './app/features/inquiries/views/indexView';
+import InquiriesShowView from './app/features/inquiries/views/showView';
 
 function App() {
   useEffect(() => {
@@ -51,6 +53,11 @@ function App() {
               <Route path="new" element={<EquipmentsNewView />} />
               <Route path=":id" element={<EquipmentsShowView />} />
               <Route path=":id/edit" element={<EquipmentsEditView />} />
+            </Route>
+            
+            <Route path="inquiries">
+              <Route path="" element={<InquiriesIndexView />} />
+              <Route path=":id" element={<InquiriesShowView />} />
             </Route>
             
             <Route path="admins">

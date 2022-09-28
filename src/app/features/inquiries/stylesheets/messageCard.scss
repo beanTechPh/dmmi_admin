@@ -1,0 +1,38 @@
+.message-card {
+  margin-bottom: 15px;
+
+  .user-image {
+    img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid rgba(0,0,0,0.25);
+    }
+  }
+
+  .content {
+    width: 500px;
+    margin-left: 10px;
+
+    p {
+      text-align: left;
+    }
+
+    .date {
+      font-size: 13px;
+      font-weight: 500;
+      color: grey;
+      text-align: left;
+    }
+  }
+
+  &.right {
+    flex-direction: row-reverse;
+    
+    .content {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+  }
+}

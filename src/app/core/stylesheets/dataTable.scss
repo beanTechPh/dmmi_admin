@@ -67,6 +67,24 @@
         &.address {
           width: 300px;
         }
+
+        &.subject {
+          width: 300px;
+          text-align: left;
+        }
+
+        &.last-message {
+          text-align: left;
+        }
+
+        &.num-unread {
+          width: 50px;
+        }
+
+        &.company {
+          width: 200px;
+          text-align: left;
+        }
       }
     }
   }
@@ -151,6 +169,40 @@
         }
 
         &.email {
+          text-align: left;
+        }
+
+        &.subject {
+          max-width: 300px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          text-align: left;
+        }
+
+        &.last-message {
+          text-align: left;
+        }
+
+        &.num-unread {
+          div {
+            display: none;
+            margin: auto;
+
+            &.active {
+              display: block;
+              min-width: 25px;
+              width: fit-content;
+              padding: 0 6px;
+              height: 25px;
+              border-radius: 30px;
+              background-color: red;
+              text-align: center;
+            }
+          }
+        }
+
+        &.company {
           text-align: left;
         }
       }

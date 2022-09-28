@@ -53,7 +53,8 @@ class AdminsContextProvider extends Component {
     this.getData(config)
   }
 
-  addAdmin = () => {
+  addAdmin = (e) => {
+    e.preventDefault()
     var isValid = true
 
     // text inputs

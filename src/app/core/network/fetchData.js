@@ -185,8 +185,9 @@ export const getFetch = (config) => {
       }else if (response.status === 401) {
         SessionsManager.destroyHeaders()
         return window.location.href = `/sign_in`
+      }else{
+        throw new Error('Something went wrong');
       }
-      throw new Error('Something went wrong');
     })
     .then(data => {
       if(data.constructor === Object){

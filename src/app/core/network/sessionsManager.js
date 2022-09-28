@@ -31,11 +31,11 @@ class SessionsManager {
 
         if (c.indexOf(name) == 0) {
           headers[header] = c.substring(name.length, c.length)
-          return
+          // return
         }
       }
 
-      headers[header] = ''
+      headers[header] = headers[header] === undefined || headers[header] === null ? '' : headers[header]
       return
     });
 
