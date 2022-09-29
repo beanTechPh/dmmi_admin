@@ -1,16 +1,18 @@
 import { ApiUrl } from "../network/url"
+import Branch from "./branch"
 import EquipComponent from "./equipComponent"
+import ProductType from "./productType"
 
 class Equipment {
   constructor(id, name, type, serialNo, origin, description, age, branch, brand, images, installedDate, schematics, components, documentation, qrCode){
     this.id = id
     this.name = name 
-    this.type = type 
+    this.productType = ProductType.rawDataToProductType(type) 
     this.serialNo = serialNo
     this.origin = origin
     this.description = description
     this.age = age
-    this.branch = branch
+    this.branch = Branch.rawDataToBranch(branch)
     this.brand = brand
     this.images = []
     this.installedDate = installedDate

@@ -1,4 +1,13 @@
 #equipments-show-page {
+  .header {
+    align-items: center;
+
+    #edit-details {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+
   .action-btns {
     align-items: center;
   }
@@ -150,6 +159,54 @@
           img {
             width: inherit;
             height: inherit;
+          }
+        }
+      }
+    }
+  }
+
+  #equipment-edit-details-modal {
+    .check {
+      label {
+        margin-bottom: 0;
+      }
+    }
+    
+    .images {
+      width: fit-content;
+      margin: auto;
+      
+      .carousel {
+        width: 250px;
+        height: 250px;
+        overflow: hidden;
+        border-radius: 5px;
+        border: 1px solid rgba(0,0,0,0.125);
+  
+        .carousel-inner, .carousel-item {
+          width: inherit;
+          height: inherit;
+  
+          img {
+            width: inherit;
+            height: inherit;
+          }
+  
+          .not-available {
+            width: fit-content;
+            height: fit-content;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+  
+            i {
+              font-size: 50px;
+            }
+  
+            .label {
+              font-weight: bold;
+            }
           }
         }
       }

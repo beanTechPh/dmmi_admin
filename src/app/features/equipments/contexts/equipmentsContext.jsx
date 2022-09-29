@@ -1,5 +1,6 @@
 import React, { createContext, Component } from 'react';
 import FlashManager from '../../../core/functions/flashManager';
+import { textValidation } from '../../../core/functions/validation';
 import Branch from '../../../core/models/branch';
 import Company from '../../../core/models/company';
 import EquipComponent from '../../../core/models/equipComponent';
@@ -70,6 +71,8 @@ class EquipmentsContextProvider extends Component {
         var showEquipment = Equipment.rawDataToEquipment(data['equipment'])
         
         this.setState({ showEquipment })
+        this.getNew({companyId: showEquipment !== null ? showEquipment.branch.companyId : ''})
+        document.querySelector("#is-from-dmmi").checked = showEquipment.brand === "DMMI"
       },
       errorFunction: (error) => {
       }
@@ -358,6 +361,80 @@ class EquipmentsContextProvider extends Component {
     this.setState({ newComponents })
   }
 
+
+  ////// EQUIPMENT UPDATE DETAILS
+  equipmentUpdateDetails = (e) => {
+    e.preventDefault()
+    var modal = document.querySelector("#equipment-edit-details-modal")
+
+    // text inputs
+    var textInputs = ["#name", "#product-type", "#installed-date", "#company", "#branch", "#description"]
+    var isValid = textValidation(textInputs)
+
+    if(!isValid){
+      return false
+    }
+
+    // Validate images
+    var _validFileExtensions = [".jpg", ".jpeg", ".png"];
+    var sFileName = document.querySelector("input#images").value;
+    if (sFileName.length > 0) {
+        var blnValid = false;
+        for (var j = 0; j < _validFileExtensions.length; j++) {
+            var sCurExtension = _validFileExtensions[j];
+            if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                blnValid = true;
+                break;
+            }
+        }
+        
+        if (!blnValid) {
+            FlashManager.setInstantFlashError("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "))
+            return false;
+        }
+    }
+
+    // get form data
+    var checkbox = document.querySelector("#is-from-dmmi") 
+    var brandValue = "existing"
+    var images = Array.from(document.querySelector("input#images").files);
+    var installed_date = new Date(document.querySelector("#installed-date").value)
+    
+    if(checkbox.checked){
+      brandValue = "dmmi"
+    }else if(document.querySelector("#brand").value !== ""){
+      brandValue = document.querySelector("#brand").value
+    }
+
+    var data = {
+      id: this.state.showEquipment.id,
+      name: document.querySelector("#name").value,
+      product_type_id: document.querySelector("#product-type").value,
+      installed_date: installed_date,
+      brand: brandValue,
+      branch_id: document.querySelector("#branch").value,
+      description: document.querySelector("#description").value,
+      images: images,
+    }
+
+    var config = {
+      pathname: "/admin/equipments/update_details",
+      data: data,
+      dataFunction: (data) => {
+        this.getEquipment()
+        modal.querySelector(".content").classList.add('hide')
+        modal.querySelector(".error-content").classList.add('hide')
+        modal.querySelector(".success-content").classList.remove('hide')
+      },
+      errorFunction: (error) => {
+        modal.querySelector(".content").classList.add('hide')
+        modal.querySelector(".error-content").classList.remove('hide')
+        modal.querySelector(".success-content").classList.add('hide')
+      }
+    }
+    postFetch(config)
+  }
+
   render() { 
     var value = {
       ...this.state,
@@ -367,7 +444,8 @@ class EquipmentsContextProvider extends Component {
       createEquipment: this.createEquipment,
       onCheckFromDMMI: this.onCheckFromDMMI,
       addComponent: this.addComponent,
-      deleteComponent: this.deleteComponent
+      deleteComponent: this.deleteComponent,
+      equipmentUpdateDetails: this.equipmentUpdateDetails
     }
 
     return (

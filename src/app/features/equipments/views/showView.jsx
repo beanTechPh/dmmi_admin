@@ -5,9 +5,15 @@ import Carousel from 'react-bootstrap/Carousel';
 import ComponentCard from './components/componentCard';
 import PDFViewer from '../../../core/utils/pdfViewer';
 import { Link } from 'react-router-dom';
+import EquipmentEditDetailsModal from './components/equipmentEditDetailsModal';
 
 class EquipmentsShowView extends Component {
   state = {  } 
+
+  editDetailsClick = (e) => {
+    document.querySelector("#equipment-edit-details-modal").classList.remove('hide')
+  }
+
   render() { 
     return (
       <EquipmentsContextProvider>
@@ -20,9 +26,12 @@ class EquipmentsShowView extends Component {
           return (
             <div id="equipments-show-page" className='page-container'>
               <div className="d-flex justify-content-between">
-                <h1 className="title">{equipment.name}</h1>
+                <div className="d-flex header">
+                  <h1 className="title">{equipment.name}</h1>
+                  <i className="bi bi-pencil-fill" id="edit-details" onClick={this.editDetailsClick}></i>
+                </div>
                 <div className="action-btns">
-                  <Link to={"/equipments/" + equipment.id + "/edit"} className='btn btn-primary btn-sm'>Edit</Link>
+                  {/* <Link to={"/equipments/" + equipment.id + "/edit"} className='btn btn-primary btn-sm'>Edit</Link> */}
                 </div>
               </div>
               <div className="d-flex justify-content-between">
@@ -50,7 +59,7 @@ class EquipmentsShowView extends Component {
                     </div>
                     <div className="group d-flex">
                       <div className="label">Type:</div>
-                      <div className="value">{equipment.type}</div>
+                      <div className="value">{equipment.productType.name}</div>
                     </div>
                     <div className="group d-flex">
                       <div className="label">Serial No:</div>
@@ -58,7 +67,7 @@ class EquipmentsShowView extends Component {
                     </div>
                     <div className="group d-flex">
                       <div className="label">Branch:</div>
-                      <div className="value">{equipment.branch}</div>
+                      <div className="value">{equipment.branch.name}</div>
                     </div>
                     <div className="group d-flex">
                       <div className="label">Brand:</div>
@@ -117,6 +126,7 @@ class EquipmentsShowView extends Component {
                 <h3 className='sub-title'>Documentation</h3>
                 <PDFViewer url={equipment.documentation} />
               </div>
+              <EquipmentEditDetailsModal/>
             </div>
           )
         }}</EquipmentsContext.Consumer>

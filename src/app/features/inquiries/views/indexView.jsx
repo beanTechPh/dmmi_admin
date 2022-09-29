@@ -25,7 +25,7 @@ class InquiriesIndexView extends Component {
                   const { query } = context
 
                   return (
-                    <input type="text" name="search" id='search' className='form-control' placeholder='Search Employee...' autoComplete='off' onKeyUp={e => query()} />
+                    <input type="text" name="search" id='search' className='form-control' placeholder='Search Inquiry...' autoComplete='off' onKeyUp={e => query()} />
                   )
                 }}</InquiriesContext.Consumer>
               </div>
