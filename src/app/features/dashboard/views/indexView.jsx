@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DashboardContextProvider from '../contexts/dashboardContext';
 import "../stylesheets/index.scss";
 
 class DashboardIndexView extends Component {
@@ -6,9 +7,11 @@ class DashboardIndexView extends Component {
 
   render() { 
     return (
-      <div id="dashboard-page" className='page-container'>
-        <h1 className="title">Dashboard</h1>
-      </div>
+      <DashboardContextProvider>
+        <div id="dashboard-page" className='page-container'>
+          <h1 className="title">Dashboard</h1>
+        </div>
+      </DashboardContextProvider>
     );
   }
 }
