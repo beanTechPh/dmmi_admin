@@ -20,8 +20,8 @@ const EquipmentTableRows = () => {
                 </div>
               </div>
             </td>
-            <td className='type'>{equipment.type}</td>
-            <td className="branch">{equipment.branch}</td>
+            <td className='type'>{equipment.productType.name}</td>
+            <td className="branch">{equipment.branch.name}</td>
             <td className="brand">{equipment.brand}</td>
           </tr>
         )}
