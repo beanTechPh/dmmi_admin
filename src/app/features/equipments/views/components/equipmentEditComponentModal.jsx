@@ -5,7 +5,7 @@ import Modal from '../../../../core/utils/modal';
 import { EquipmentsContext } from '../../contexts/equipmentsContext';
 import Carousel from 'react-bootstrap/Carousel';
 
-const EquipmentEditDetailsModal = () => {
+const EquipmentEditComponentModal = () => {
   const context = useContext( EquipmentsContext );
   const { onCheckFromDMMI, showEquipment, productTypes, companies, companyPick, branches, equipmentUpdateDetails } = context;
   const equipment = showEquipment
@@ -95,4 +95,4 @@ const EquipmentEditDetailsModal = () => {
   )
 }
 
-export default EquipmentEditDetailsModal;
+export default EquipmentEditComponentModal;
