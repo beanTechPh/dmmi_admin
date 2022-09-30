@@ -16,6 +16,7 @@ import EquipmentsEditView from './app/features/equipments/views/editView';
 import FlashManager from './app/core/functions/flashManager';
 import InquiriesIndexView from './app/features/inquiries/views/indexView';
 import InquiriesShowView from './app/features/inquiries/views/showView';
+import ContactsIndexView from './app/features/contacts/views/indexView';
 
 function App() {
   useEffect(() => {
@@ -62,6 +63,10 @@ function App() {
             
             <Route path="admins">
               <Route path="" element={<AdminsIndexView />} />
+            </Route>
+            
+            <Route path="contacts">
+              <Route path="" element={<ContactsIndexView />} />
             </Route>
           </Route>
         </Routes>

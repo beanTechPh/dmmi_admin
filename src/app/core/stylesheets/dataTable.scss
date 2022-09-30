@@ -85,6 +85,11 @@
           width: 200px;
           text-align: left;
         }
+
+        &.message {
+          width: 300px;
+          text-align: left;
+        }
       }
     }
   }
@@ -203,6 +208,10 @@
         }
 
         &.company {
+          text-align: left;
+        }
+
+        &.message {
           text-align: left;
         }
       }
